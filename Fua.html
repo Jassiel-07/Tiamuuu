@@ -161,36 +161,40 @@
       }
     });
 
-    // Función para actualizar el contador hasta próximo 11:11 AM o PM CDMX (UTC-6)
+    // Función corregida para actualizar el contador hasta próximo 11:11 AM o PM CDMX (UTC-6)
     function actualizarTemporizador() {
-      const ahora = new Date();
-      const utcHour = ahora.getUTCHours();
-      const utcMinutes = ahora.getUTCMinutes();
+      const ahoraUTC = new Date();
 
-      // Hora CDMX UTC-6
-      let horaCDMX = (utcHour - 6 + 24) % 24;
-      let minutosCDMX = utcMinutes;
+      // Convertir a hora local CDMX (UTC-6 sin horario de verano)
+      const ahoraCDMX = new Date(ahoraUTC.getTime() - 6 * 60 * 60 * 1000);
 
-      // Próximo 11:11 AM o 11:11 PM
-      let proxima = new Date(ahora.getTime());
+      const hora = ahoraCDMX.getHours();
+      const minutos = ahoraCDMX.getMinutes();
 
-      if (horaCDMX < 11 || (horaCDMX === 11 && minutosCDMX < 11)) {
-        proxima.setUTCHours(11 + 6, 11, 0, 0); // 11:11 AM CDMX ajustado a UTC
-      } else if (horaCDMX < 23 || (horaCDMX === 23 && minutosCDMX < 11)) {
-        proxima.setUTCHours(23 + 6 - 24, 11, 0, 0); // 11:11 PM CDMX ajustado a UTC
-      } else {
-        proxima.setUTCDate(proxima.getUTCDate() + 1);
-        proxima.setUTCHours(11 + 6, 11, 0, 0); // Mañana 11:11 AM CDMX ajustado a UTC
+      // Crear fecha para 11:11 AM hoy en CDMX
+      let proxima1111 = new Date(ahoraCDMX);
+      proxima1111.setHours(11, 11, 0, 0);
+
+      if (hora > 11 || (hora === 11 && minutos >= 11)) {
+        // Si ya pasó 11:11 AM, la próxima es 11:11 PM hoy
+        proxima1111.setHours(23, 11, 0, 0);
+
+        if (hora > 23 || (hora === 23 && minutos >= 11)) {
+          // Si ya pasó 11:11 PM, la próxima es 11:11 AM mañana
+          proxima1111.setDate(proxima1111.getDate() + 1);
+          proxima1111.setHours(11, 11, 0, 0);
+        }
       }
 
-      const diff = proxima - ahora;
+      const diffMs = proxima1111.getTime() - ahoraCDMX.getTime();
 
-      const horas = Math.floor(diff / 1000 / 60 / 60);
-      const minutos = Math.floor((diff / 1000 / 60) % 60);
-      const segundos = Math.floor((diff / 1000) % 60);
+      const diffSeg = Math.floor(diffMs / 1000);
+      const horas = Math.floor(diffSeg / 3600);
+      const minutosRest = Math.floor((diffSeg % 3600) / 60);
+      const segundos = diffSeg % 60;
 
       document.getElementById("countdown").textContent =
-        `Faltan ${horas}h ${minutos}m ${segundos}s para el próximo 11:11`;
+        `Faltan ${horas}h ${minutosRest}m ${segundos}s para el próximo 11:11`;
 
       setTimeout(actualizarTemporizador, 1000);
     }
