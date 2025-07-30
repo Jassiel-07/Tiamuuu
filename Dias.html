@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Días desde que te conocí</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffe3f3, #ffd6e7);
+      font-family: 'Segoe UI', sans-serif;
+      color: #c2185b;
+      text-align: center;
+      padding: 50px;
+    }
+    .contador {
+      font-size: 24px;
+      background: #fff0f7;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 0 15px #f8a8c7;
+      display: inline-block;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="contador">
+    <h1>💘 Días desde que te conocí 💘</h1>
+    <p id="resultado"></p>
+  </div>
+
+  <script>
+    function actualizarContador() {
+      const inicio = new Date("2025-04-03T19:18:00");
+      const ahora = new Date();
+
+      let años = ahora.getFullYear() - inicio.getFullYear();
+      let meses = ahora.getMonth() - inicio.getMonth();
+      let días = ahora.getDate() - inicio.getDate();
+      let horas = ahora.getHours() - inicio.getHours();
+      let minutos = ahora.getMinutes() - inicio.getMinutes();
+      let segundos = ahora.getSeconds() - inicio.getSeconds();
+
+      if (segundos < 0) {
+        segundos += 60;
+        minutos--;
+      }
+      if (minutos < 0) {
+        minutos += 60;
+        horas--;
+      }
+      if (horas < 0) {
+        horas += 24;
+        días--;
+      }
+      if (días < 0) {
+        meses--;
+        const mesAnterior = new Date(ahora.getFullYear(), ahora.getMonth(), 0);
+        días += mesAnterior.getDate();
+      }
+      if (meses < 0) {
+        meses += 12;
+        años--;
+      }
+
+      document.getElementById("resultado").innerHTML =
+        `Han pasado:<br><br>
+        <strong>${años}</strong> año(s)<br>
+        <strong>${meses}</strong> mes(es)<br>
+        <strong>${días}</strong> día(s)<br>
+        <strong>${horas}</strong> hora(s)<br>
+        <strong>${minutos}</strong> minuto(s)<br>
+        <strong>${segundos}</strong> segundo(s) 💞`;
+    }
+
+    actualizarContador();
+    setInterval(actualizarContador, 1000); // actualiza cada segundo
+  </script>
+</body>
+</html>

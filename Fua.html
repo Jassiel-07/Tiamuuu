@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>11:11</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Comic Sans MS", cursive;
+      background: url('fon.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .card {
+      background-color: rgba(255, 192, 203, 0.85);
+      border-radius: 20px;
+      padding: 20px;
+      max-width: 320px;
+      width: 100%;
+      box-shadow: 0 0 15px #fff;
+      text-align: center;
+    }
+
+    .lock {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .timer {
+      font-size: 14px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+    }
+
+    .button {
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 20px;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 0 0 5px #fff;
+      transition: background-color 0.3s ease;
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .button:hover {
+      background-color: #ff85c1;
+    }
+
+    .inner-card {
+      background-color: rgba(255, 182, 193, 0.95);
+      margin-top: 15px;
+      padding: 15px;
+      border-radius: 15px;
+      display: none;
+      animation: expand 0.5s ease-in-out forwards;
+      word-wrap: break-word;
+      white-space: pre-line;
+    }
+
+    @keyframes expand {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Responsive */
+    @media (max-width: 400px) {
+      .lock {
+        font-size: 28px;
+      }
+      .button {
+        font-size: 18px;
+        padding: 8px 15px;
+        max-width: 100%;
+      }
+      .timer {
+        font-size: 12px;
+      }
+      .inner-card {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="lock">🔒</div>
+    <button class="button" id="btn11">11:11</button>
+    <div class="timer" id="countdown"></div>
+    <div class="inner-card" id="mensaje">
+      Cargando mensaje...
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+  <script>
+    // Configura aquí tu URL de base de datos
+    const firebaseConfig = {
+      databaseURL: "https://project-1849865928006430092-default-rtdb.firebaseio.com/"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    const btn = document.getElementById("btn11");
+    const mensajeDiv = document.getElementById("mensaje");
+
+    let mensajeCache = "";
+
+    function esHora1111() {
+      const ahora = new Date();
+      const utcHour = ahora.getUTCHours();
+      const utcMinutes = ahora.getUTCMinutes();
+
+      // Convertir a hora CDMX UTC-6
+      const horaCDMX = (utcHour - 6 + 24) % 24;
+      const minutosCDMX = utcMinutes;
+
+      // Verificar si es minuto 11:11 exactamente (hora y minuto)
+      return (horaCDMX === 11 && minutosCDMX === 11);
+    }
+
+    btn.addEventListener("click", () => {
+      if (esHora1111()) {
+        if(mensajeCache){
+          // Ya cargado, solo mostrar
+          mensajeDiv.style.display = "block";
+          return;
+        }
+        // Cargar mensaje una vez
+        db.ref("mensajes/onceOnce").once("value")
+          .then(snapshot => {
+            mensajeCache = snapshot.val() || "No hay mensaje configurado.";
+            mensajeDiv.textContent = mensajeCache;
+            mensajeDiv.style.display = "block";
+          })
+          .catch(() => {
+            mensajeDiv.textContent = "Error al cargar el mensaje.";
+            mensajeDiv.style.display = "block";
+          });
+      } else {
+        mensajeDiv.textContent = "Lo siento princesa, aún no es la hora ⏳";
+        mensajeDiv.style.display = "block";
+      }
+    });
+
+    // Función para actualizar el contador hasta próximo 11:11 AM o PM CDMX (UTC-6)
+    function actualizarTemporizador() {
+      const ahora = new Date();
+      const utcHour = ahora.getUTCHours();
+      const utcMinutes = ahora.getUTCMinutes();
+
+      // Hora CDMX UTC-6
+      let horaCDMX = (utcHour - 6 + 24) % 24;
+      let minutosCDMX = utcMinutes;
+
+      // Próximo 11:11 AM o 11:11 PM
+      let proxima = new Date(ahora.getTime());
+
+      if (horaCDMX < 11 || (horaCDMX === 11 && minutosCDMX < 11)) {
+        proxima.setUTCHours(11 + 6, 11, 0, 0); // 11:11 AM CDMX ajustado a UTC
+      } else if (horaCDMX < 23 || (horaCDMX === 23 && minutosCDMX < 11)) {
+        proxima.setUTCHours(23 + 6 - 24, 11, 0, 0); // 11:11 PM CDMX ajustado a UTC
+      } else {
+        proxima.setUTCDate(proxima.getUTCDate() + 1);
+        proxima.setUTCHours(11 + 6, 11, 0, 0); // Mañana 11:11 AM CDMX ajustado a UTC
+      }
+
+      const diff = proxima - ahora;
+
+      const horas = Math.floor(diff / 1000 / 60 / 60);
+      const minutos = Math.floor((diff / 1000 / 60) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("countdown").textContent =
+        `Faltan ${horas}h ${minutos}m ${segundos}s para el próximo 11:11`;
+
+      setTimeout(actualizarTemporizador, 1000);
+    }
+
+    actualizarTemporizador();
+  </script>
+</body>
+</html>

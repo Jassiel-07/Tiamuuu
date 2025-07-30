@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🌈 Promesas</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffe6f0, #ccf2ff);
+      font-family: 'Pacifico', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      color: #ff4d88;
+      padding: 40px 20px;
+    }
+    .container {
+      background: white;
+      max-width: 400px;
+      width: 100%;
+      border-radius: 30px;
+      box-shadow: 0 0 25px rgba(255, 77, 136, 0.3);
+      padding: 40px 30px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      color: #ff1a66;
+    }
+    .descripcion {
+      font-family: 'Arial', sans-serif;
+      font-size: 1em;
+      color: #b30059;
+      margin-bottom: 30px;
+    }
+    .promesas-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      padding-left: 0;
+      list-style: none;
+    }
+    .promesa {
+      background: #ff99cc;
+      width: 120px;
+      height: 120px;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(255, 77, 136, 0.4);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: width 0.5s ease, height 0.5s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 15px;
+      color: white;
+      font-size: 2.5em;
+      user-select: none;
+      box-sizing: border-box;
+    }
+    .promesa.expanded {
+      width: 100%;
+      height: auto;
+      font-size: 1.2em;
+      padding: 25px 30px;
+      color: #660033;
+      background: #ffe6f0;
+      cursor: default;
+      box-shadow: 0 8px 20px rgba(255, 77, 136, 0.7);
+      font-family: 'Arial', sans-serif;
+      font-weight: 500;
+      text-align: left;
+    }
+    .promesa.expanded::before {
+      content: '';
+    }
+    .promesa .icono {
+      font-size: 3.5em;
+      line-height: 1;
+      user-select: none;
+      transition: opacity 0.3s ease;
+    }
+    .promesa.expanded .icono {
+      opacity: 0;
+      height: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+    .promesa .texto {
+      display: none;
+      margin-top: 10px;
+      white-space: normal;
+    }
+    .promesa.expanded .texto {
+      display: block;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.2em;
+      }
+      .descripcion {
+        font-size: 0.9em;
+      }
+      .promesa {
+        width: 100px;
+        height: 100px;
+        font-size: 2em;
+      }
+      .promesa.expanded {
+        width: 100%;
+        padding: 20px;
+        font-size: 1.1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌈 Mis Promesas</h1>
+    <div class="descripcion">
+      Dijiste que no prometiera, pero aveces estoy seguro de lo que digo
+    </div>
+    <ul class="promesas-lista">
+      <li class="promesa" tabindex="0">
+        <div class="icono" aria-hidden="true">💌</div>
+        <div class="texto">Apoyarte en cada dia que tenga contacto contigo.</div>
+      </li>
+      <li class="promesa" tabindex="0">
+        <div class="icono" aria-hidden="true">💌</div>
+        <div class="texto">Jamas cambiarte por una novia,
+        Sii no lo are weno ni novia tengo pero es un decir.</div>
+      </li>
+      <li class="promesa" tabindex="0">
+        <div class="icono" aria-hidden="true">💌</div>
+        <div class="texto">Mucho menos por otra amistad.</div>
+      </li>
+      <li class="promesa" tabindex="0">
+        <div class="icono" aria-hidden="true">💌</div>
+        <div class="texto">Hacer lo posible para cumplir cosas que te dije en el pasado.</div>
+      </li>
+      <li class="promesa" tabindex="0">
+        <div class="icono" aria-hidden="true">💌</div>
+        <div class="texto">Poner tu felicidad delante de la mia
+        jskjskajs.</div>
+      </li>
+      <li class="promesa" tabindex="0">
+        <div class="icono" aria-hidden="true">💌</div>
+        <div class="texto">El tatuaje reyna.</div>
+      </li>
+      <li class="promesa" tabindex="0">
+        <div class="icono" aria-hidden="true">💌</div>
+        <div class="texto">Siempre estar para ti pase lo que pase🥺.</div>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    const promesas = document.querySelectorAll('.promesa');
+
+    promesas.forEach(promesa => {
+      promesa.addEventListener('click', () => {
+        if (promesa.classList.contains('expanded')) {
+          promesa.classList.remove('expanded');
+          return;
+        }
+        promesas.forEach(p => p.classList.remove('expanded'));
+        promesa.classList.add('expanded');
+        promesa.focus();
+      });
+
+      promesa.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          promesa.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

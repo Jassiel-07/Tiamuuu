@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deseos Para Ti 💌</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Pacifico', cursive;
+      background: linear-gradient(to bottom, #fff0f5, #ccf2ff);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ff66b2;
+      text-align: center;
+      position: relative;
+    }
+
+    .carta {
+      background: white;
+      padding: 35px;
+      border-radius: 25px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.2);
+      max-width: 600px;
+      width: 90%;
+      z-index: 2;
+      color: #444;
+      font-size: 1.2em;
+      line-height: 1.7em;
+    }
+
+    .carta h1 {
+      color: #ff66b2;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .firma {
+      margin-top: 30px;
+      font-size: 1em;
+      color: #888;
+    }
+
+    /* Pétalos flotantes */
+    .petalo {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: radial-gradient(circle, #ffc0cb 30%, transparent 70%);
+      border-radius: 50%;
+      animation: flotar 10s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.7;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="carta">
+    <h1>Deseos Para Ti 💫</h1>
+    <p>
+      Mira, como te lo he dicho, eres una persona especial para mí.<br><br>
+      Por eso, te deseo lo mejor. Hablemos o no, espero que jamás te haga falta alguien que te quiera, que te valore, que te cuide de verdad.<br><br>
+      Que nunca te falte estabilidad emocional y, por supuesto, que seas feliz.<br><br>
+      Recuerda que eres alguien increíble, que vales demasiado y que realmente vale la pena tenerte en la vida.<br><br>
+      Espero estar cerca tuyo mucho tiempo… pero si no, no olvides que te amuu jskajska 💗
+    </p>
+    <div class="firma">Con cariño, Angelico 🌸</div>
+  </div>
+
+  <!-- pétalos flotando -->
+  <script>
+    for (let i = 0; i < 20; i++) {
+      let petalo = document.createElement("div");
+      petalo.classList.add("petalo");
+      petalo.style.left = Math.random() * 100 + "vw";
+      petalo.style.animationDuration = 5 + Math.random() * 10 + "s";
+      petalo.style.animationDelay = Math.random() * 5 + "s";
+      document.body.appendChild(petalo);
+    }
+  </script>
+</body>
+</html>

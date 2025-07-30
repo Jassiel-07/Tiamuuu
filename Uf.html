@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cosas que solo tú sabes</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-image: url('fon.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    .box {
+      background-color: #ffcce7cc;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      padding: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      backdrop-filter: blur(5px);
+    }
+
+    .box:hover {
+      background-color: #ffb8decc;
+    }
+
+    .content {
+      background-color: #f4d3ff;
+      margin-top: 10px;
+      border-radius: 10px;
+      padding: 10px;
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .inner-title {
+      font-weight: bold;
+      margin-top: 10px;
+      background-color: #e68fff;
+      padding: 8px 12px;
+      border-radius: 10px;
+      color: #fff;
+      box-shadow: inset 0 0 5px #fff3;
+    }
+
+    .inner-text {
+      background-color: #f8e0ff;
+      margin-top: 5px;
+      padding: 10px;
+      border-radius: 10px;
+      white-space: pre-line;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box" onclick="toggleBox('c1')">
+    <strong>Mi lado cariñoso😽</strong>
+    <div class="content" id="c1">
+      Si aún que creo ya te lo había dicho nadie sabe o le a visto como soy contigo🥺
+    </div>
+  </div>
+
+  <div class="box" onclick="toggleBox('c2')">
+    <strong>Y ahora el lado cariñoso secreto🙂‍↔️</strong>
+    <div class="content" id="c2">
+      <div class="inner-title">Cuando me dicen algo bonito</div>
+      <div class="inner-text">
+        es como q ayyy🥹😭😭😭 no c, como se reacciona🥺 pero ago el mayor esfuerzo por contestar bien o así pero aveces por eso tardo en contestar cuando me dices algo bonito
+      </div>
+
+      <div class="inner-title">De esta si te das cuenta</div>
+      <div class="inner-text">
+        me cuesta bastante decir cosas tan cariñosas por eso escribo Tiamuu o tekelo o así es que me da pena, o si no despues digo dieeee por q siento q no c👉👈
+      </div>
+    </div>
+  </div>
+
+  <div class="box" onclick="toggleBox('c3')">
+    <strong>Esto creo que ya te lo había dicho pero pos😳</strong>
+    <div class="content" id="c3">
+      Cuando estábamos cerquita q tú estabas aquí prácticaba lo que te iba a decir, de que te iba a platicar, que iba a hacer, e incluso aún lo ago en el día o en la noche para saber que decirte mañana, aún que la mayoría de veces se me olvida😉
+    </div>
+  </div>
+
+  <div class="box" onclick="toggleBox('c4')">
+    <strong>Me haces falta💗</strong>
+    <div class="content" id="c4">
+      Supongo que si te das cuenta pero no es mame, si se que pos no me contestas tan seguido pero aveces si digo a kbron ya pasó mucho tiempo🥺
+    </div>
+  </div>
+
+  <div class="box" onclick="toggleBox('c5')">
+    <strong>Lo débil que soy😔</strong>
+    <div class="content" id="c5">
+      No sé si llamarlo devil pero me refiero a lo sensible, la facilidad con la que puedo sentirme mal por algo que alomejor para ti es insignificante🥹
+    </div>
+  </div>
+
+  <div class="box" onclick="toggleBox('c6')">
+    <strong>Que amo los femboys🤔</strong>
+    <div class="content" id="c6">
+      Noooooo obeamente nooooo namas t amo a ti dieeeeeeee no pos yo q quiero q se te olvide y todavía te doy cuerda😂
+    </div>
+  </div>
+
+  <div class="box" onclick="toggleBox('c7')">
+    <strong>Cosas que hemos platicado🥰</strong>
+    <div class="content" id="c7">
+      <div class="inner-title">Como olvidar cuando peleamos por ver quién no merecía a quien</div>
+      <div class="inner-text">
+        Y pos si eso es algo que no se si lo escucha glow va a decir q valgo vrg pero si, creo no merecerte🥺
+      </div>
+
+      <div class="inner-title">El ser roomies</div>
+      <div class="inner-text">
+        Otra mmd q desde que se dijo no se me a olvidado y no creo dejar de pensar en eso
+      </div>
+
+      <div class="inner-title">El tatuaje</div>
+      <div class="inner-text">
+        Mientras más pasa el tiempo más absurdo suena, perooooo  
+        Por qué no, obeo q si, pos si yo me quiero rayar mínimo toda la mano, que no entre ahí ese dishoso tatuaje o mínimo un monito que nos represente
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleBox(id) {
+      const box = document.getElementById(id);
+      box.style.display = box.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+
+</body>
+</html>

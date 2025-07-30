@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nuestro Futuro con Subcartas</title>
+<style>
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #f9f2ff 0%, #e0d6ff 100%);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+  .card-container {
+    width: 360px;
+    max-width: 100%;
+  }
+  .card {
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 14px 30px rgba(101, 56, 255, 0.25);
+    overflow: hidden;
+    transition: all 0.4s ease;
+    padding: 1.8rem 2rem;
+  }
+  .card h2 {
+    margin: 0 0 1rem;
+    font-weight: 700;
+    color: #6538ff;
+    user-select: none;
+    font-size: 1.8rem;
+  }
+  /* Señalamiento arriba */
+  .info-text {
+    text-align: center;
+    color: #6e4bd8;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    user-select: none;
+    font-style: italic;
+  }
+
+  /* Subcards */
+  .subcard {
+    background: #f3eaff;
+    margin-bottom: 1rem;
+    border-radius: 18px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    max-height: 56px;
+    padding: 0.9rem 1.5rem;
+    position: relative;
+  }
+  .subcard.expanded {
+    max-height: 400px; /* suficiente para el texto */
+    padding: 1.2rem 1.5rem 1.8rem;
+  }
+  .subcard h3 {
+    margin: 0;
+    color: #5021a5;
+    font-size: 1.3rem;
+    user-select: none;
+  }
+  .subcard p {
+    margin: 0.8rem 0 0 0;
+    color: #3a2765;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  /* Flecha para indicar expandible */
+  .subcard::after {
+    content: "▶";
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #6e4bd8;
+    transition: transform 0.3s ease;
+  }
+  .subcard.expanded::after {
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  /* Texto final */
+  .final-text {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 1rem;
+    color: #6e4bd8;
+    font-style: italic;
+    user-select: none;
+  }
+
+  @media (max-width: 400px) {
+    .card-container {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="card-container">
+    <div class="card">
+      <h2>💌 Nuestro Futuro</h2>
+
+      <div class="info-text">Toca una sección para leer más</div>
+
+      <div class="subcard" tabindex="0" role="button" aria-expanded="false" aria-label="Expandir Ser Roomies" onclick="toggleSubcard(this)" onkeydown="if(event.key==='Enter'){toggleSubcard(this)}">
+        <h3>🏠 Ser Roomies </h3>
+        <p style="display:none;">
+          Que te puedo decir, un dia lo mencionamos y asta hoy lo pienso, espero algun dia cumplirlo
+        </p>
+      </div>
+
+      <div class="subcard" tabindex="0" role="button" aria-expanded="false" aria-label="Expandir Viajarrrr" onclick="toggleSubcard(this)" onkeydown="if(event.key==='Enter'){toggleSubcard(this)}">
+        <h3>✈️ Viajarrrr</h3>
+        <p style="display:none;">
+          jskajska Que te puedo decir desde el ir de gonzo a reynoyork o conocer otros lugares
+        </p>
+      </div>
+
+      <div class="subcard" tabindex="0" role="button" aria-expanded="false" aria-label="Expandir En muchos años" onclick="toggleSubcard(this)" onkeydown="if(event.key==='Enter'){toggleSubcard(this)}">
+        <h3>En muchos años </h3>
+        <p style="display:none;">
+          Simplemente en muchos años estar sentados recordando todo lo que pasamos para llegar a ese punto
+        </p>
+      </div>
+
+      <div class="final-text">
+        Pero asi como se puede cumplir todo esto y mas, puede que solo quede el recuerdo de esto, pero de corazon espero que se cumpla todo
+      </div>
+    </div>
+  </div>
+
+<script>
+  function toggleSubcard(element) {
+    const isExpanded = element.classList.toggle('expanded');
+    const p = element.querySelector('p');
+    if(isExpanded) {
+      p.style.display = 'block';
+      element.setAttribute('aria-expanded', 'true');
+    } else {
+      p.style.display = 'none';
+      element.setAttribute('aria-expanded', 'false');
+    }
+  }
+</script>
+
+</body>
+</html>
