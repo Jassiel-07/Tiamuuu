@@ -12,18 +12,21 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
       font-family: 'Pacifico', cursive;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh; /* Permite crecer el contenido */
-      overflow-y: auto;   /* Habilita scroll si es necesario */
-      transition: background 0.6s ease;
-      padding: 20px; /* Espacio adicional para evitar que el contenido quede pegado */
+      min-height: 100vh;
+      overflow-y: auto;
     }
 
-    /* Fondos según hora */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* hacia arriba */
+      padding: 15px;
+      transition: background 0.6s ease;
+    }
+
+    /* Fondos según la hora */
     body.morning {
       background: linear-gradient(to bottom, #fff3e6, #ffe6f0);
       color: #000;
@@ -47,7 +50,7 @@
     .container {
       text-align: center;
       background: white;
-      padding: 25px 30px;
+      padding: 15px 20px;
       border-radius: 25px;
       box-shadow: 0 0 15px rgba(0,0,0,0.15);
       max-width: 420px;
@@ -55,28 +58,28 @@
     }
 
     h1 {
-      font-size: 1.8em;
+      font-size: 1.6em;
       color: #ff66b2;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
 
     p {
-      font-size: 1em;
-      margin-bottom: 20px;
+      font-size: 0.95em;
+      margin-bottom: 15px;
     }
 
     .btn-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 8px;
     }
 
     button {
       background: #ff99cc;
       border: none;
-      padding: 10px 15px;
-      font-size: 0.9em;
-      border-radius: 12px;
+      padding: 8px 10px;
+      font-size: 0.8em;
+      border-radius: 10px;
       cursor: pointer;
       transition: all 0.3s ease;
     }
@@ -89,16 +92,16 @@
 
     /* Botón Final */
     .final-btn {
-      margin-top: 30px;
+      margin-top: 20px;
       text-align: center;
     }
 
     .final-btn button {
       background: linear-gradient(to right, #b30059, #ff66b2);
       color: white;
-      padding: 12px 30px;
-      font-size: 1em;
-      border-radius: 25px;
+      padding: 10px 20px;
+      font-size: 0.9em;
+      border-radius: 20px;
       box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
       transition: all 0.3s ease;
     }
@@ -139,7 +142,7 @@
       window.location.href = pagina;
     }
 
-    // Cambiar fondo según la hora
+    // Fondo según la hora
     const hora = new Date().getHours();
     if (hora >= 6 && hora < 12) {
       document.body.classList.add("morning");
