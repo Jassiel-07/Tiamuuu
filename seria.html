@@ -1,105 +1,123 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>¿Qué sería de mí? - Melancólico Oscuro</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Georgia&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>¿Qué hubiera pasado si no te conocía?</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Georgia&display=swap');
 
-  body {
-    margin: 0;
-    background: radial-gradient(circle at center, #0a0a1a 0%, #1a1a2e 80%);
-    font-family: 'Georgia', serif;
-    display: flex;
-    justify-content: center;
-    padding: 2rem 1rem;
-    min-height: 100vh;
-    align-items: center;
-    color: #ccc9e6;
-  }
-  .card-container {
-    width: 360px;
-    max-width: 100%;
-  }
-  .subcard-melancolica {
-    background: linear-gradient(145deg, #1c1c3a, #12122a);
-    border-radius: 24px;
-    padding: 2rem 2.2rem;
-    box-shadow:
-      inset 0 0 20px 3px rgba(72, 61, 139, 0.7),
-      0 8px 30px rgba(36, 33, 69, 0.9);
-    color: #ccc9e6;
-    font-style: italic;
-    line-height: 1.7;
-    font-size: 1.1rem;
-    user-select: none;
-    position: relative;
-    overflow: hidden;
-    animation: fadeInUp 1.2s ease forwards;
-  }
-  .subcard-melancolica::before {
-    content: "";
-    position: absolute;
-    top: -60%;
-    left: -60%;
-    width: 220%;
-    height: 220%;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 70%);
-    animation: slowRotate 30s linear infinite;
-    z-index: 0;
-  }
-  .subcard-melancolica > * {
-    position: relative;
-    z-index: 1;
-  }
-  .subcard-melancolica h3 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #b8a9e3;
-    user-select: none;
-    text-align: center;
-    text-shadow: 0 0 8px #8a7ecb;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(25px);
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #fceff9 0%, #e6d5f7 100%);
+      font-family: 'Georgia', serif;
+      display: flex;
+      justify-content: center;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      align-items: center;
+      color: #5b4c6b;
+      overflow: hidden;
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  @keyframes slowRotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
 
-  @media (max-width: 400px) {
     .card-container {
-      width: 100%;
-      padding: 0 1rem;
+      width: 360px;
+      max-width: 100%;
     }
-  }
-</style>
+
+    .subcard-melancolica {
+      background: linear-gradient(145deg, #f9f4fc, #e8dff7);
+      border-radius: 24px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 8px 30px rgba(143, 117, 196, 0.3);
+      color: #4d3a5d;
+      font-style: italic;
+      line-height: 1.7;
+      font-size: 1.1rem;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 1.2s ease forwards;
+    }
+
+    .subcard-melancolica h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #a368c2;
+      text-align: center;
+      text-shadow: 0 0 8px #dab0f9;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Flores cayendo */
+    .flower {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-image: url('https://emoji.slack-edge.com/T02F34B3W/flower/8fd2fcae27f8e1d6.png');
+      background-size: cover;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10%) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(120vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <div class="card-container">
-  <div class="subcard-melancolica" role="region" aria-label="Texto melancólico ¿Qué sería de mí?">
-    <h3>🤔 ¿Qué sería de mí?</h3>
+  <div class="subcard-melancolica" role="region" aria-label="Texto emocional ¿Qué hubiera pasado si no te conocía?">
+    <h3>🌸 ¿Qué hubiera pasado si no te conocía?</h3>
     <p>
-      no lo se la verdad<br />
-      Jamas eh pensado en mandarme pal lobby te mentiria si te digo noo tu me salvaste mi vida ya no tenia sentido,<br />
-      pero si llegaste en un momento oscuro en varios sentidos,<br />
-      No es como que tuviera problemas namas familiares, no estaba solo, pero me sentia solitario, osea es que era algo de lo que no podia escapar, y nadie me iba a comprender por que para los demas yo no tenia nada era una persona normal psicologicamente, pero no se, simplemente ausencia de algo pero llegaste tu, y sin que supieras me ayudaste por eso eres lo que eres para mi.
+      Mira la neta si no te hubiera conocido varias cosas hubieran transcurrido de manera distinta,<br />
+      yo que iba a pensar que iba a conocer a una persona la cual sería demasiado importante para mí<br />
+      en el último mes que estaría en Reynosa.<br /><br />
+      ¿Quién iba a pensar que me iba a sentir mal si esa persona no me hablaba?<br />
+      Que iba a tener tanto apego, y que le iba a pedir perdón por cualquier cosa.<br />
+      Parece mame, pero pedir perdón, mínimo en mí, no era para nada habitual.<br /><br />
+      Has cambiado mi vida desde la distancia, desde mi manera de escribir hasta mi ciclo de sueño. Jskajskajs<br />
+      Las mejores desveladas de mi vida. Cuando pienses que te digo que te amo o que te quiero nomás porque sí,<br />
+      recuerda que yo no soy una persona que se lo dice a cualquiera.<br /><br />
+      Gracias por estar ahí. Te kiero 🥺💗💗
     </p>
   </div>
 </div>
+
+<script>
+  // Generar flores cayendo
+  const total = 20;
+  for (let i = 0; i < total; i++) {
+    const flower = document.createElement('div');
+    flower.classList.add('flower');
+    flower.style.left = Math.random() * 100 + 'vw';
+    flower.style.animationDuration = 5 + Math.random() * 5 + 's';
+    flower.style.animationDelay = Math.random() * 5 + 's';
+    document.body.appendChild(flower);
+  }
+</script>
 
 </body>
 </html>
