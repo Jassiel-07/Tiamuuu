@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cartas al Futuro 💜</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #d9b3ff, #a366ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+      color: #4b007f;
+      min-height: 100vh;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 30px;
+      text-shadow: 0 0 8px #8c2aff;
+    }
+    .carta {
+      background: #f3e6ff;
+      border: 2.5px solid #8000ff;
+      border-radius: 20px;
+      padding: 25px 20px;
+      width: 320px;
+      margin: 15px 0;
+      box-shadow: 0 0 15px #b399ff;
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s ease;
+      cursor: default;
+    }
+    .carta:hover:not(.disabled) {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #d399ff;
+      cursor: pointer;
+    }
+    .candado {
+      font-size: 48px;
+      margin-bottom: 15px;
+      color: #8c2aff;
+      user-select: none;
+    }
+    h3 {
+      font-size: 1.7rem;
+      margin-bottom: 8px;
+      user-select: none;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      font-style: italic;
+      user-select: none;
+    }
+    button {
+      background: #9b59b6;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 15px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 0 12px #7d3c98;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    button:disabled, .disabled button {
+      background: #c7a4ff;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    .timer {
+      font-weight: 600;
+      color: #6a0dad;
+      margin-top: 8px;
+      font-size: 1rem;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Cartas al Futuro 💌</h1>
+
+  <div class="carta" id="carta1">
+    <div class="candado">🔒</div>
+    <h3>Cuando cumplas 17</h3>
+    <p>Se abrirá el 27 de junio de 2026</p>
+    <button disabled>Ver carta</button>
+    <div class="timer" id="timer1"></div>
+  </div>
+
+  <div class="carta" id="carta2">
+    <div class="candado">🔒</div>
+    <h3>1 año de conocerte</h3>
+    <p>Se abrirá el 3 de abril de 2026 a las 7:18</p>
+    <button disabled>Ver carta</button>
+    <div class="timer" id="timer2"></div>
+  </div>
+  
+  <div class="carta" id="carta2">
+    <div class="candado">🔒</div>
+    <h3>Mi cumpleaños 14</h3>
+    <p>Se abrirá el 28 de septiembre</p>
+    <button disabled>Ver carta</button>
+    <div class="timer" id="timer5"></div>
+  </div>
+
+  <div class="carta" id="carta3">
+    <div class="candado">🔒</div>
+    <h3>Cuando cumplas 18</h3>
+    <p>Se abrirá el 27 de junio de 2027</p>
+    <button disabled>Ver carta</button>
+    <div class="timer" id="timer3"></div>
+  </div>
+
+  <div class="carta" id="carta4">
+    <div class="candado">🔒</div>
+    <h3>2030</h3>
+    <p>Se abrirá el 1 de enero de 2030</p>
+    <button disabled>Ver carta</button>
+    <div class="timer" id="timer4"></div>
+  </div>
+
+  <div class="carta" id="carta5">
+    <div class="candado">🔒</div>
+    <h3>Si algún día me dejas de hablar<br><small>(Ojalá nunca)</small></h3>
+    <p>Protegida con código</p>
+    <button>Ingresar código</button>
+  </div>
+
+  <script>
+    const cartas = [
+      { id: "1", fecha: new Date("2026-06-27T00:00:00-05:00"), enlace: "carta1.html" },
+      { id: "2", fecha: new Date("2026-04-03T07:18:00-05:00"), enlace: "carta2.html" },
+      { id: "3", fecha: new Date("2027-06-27T00:00:00-05:00"), enlace: "carta3.html" },
+      { id: "4", fecha: new Date("2030-01-01T00:00:00-05:00"), enlace: "carta4.html" },
+       { id: "5", fecha: new Date("2025-09-28T00:00:00-05:00"), enlace: "carta5.html" },
+    ];
+
+    function actualizarTimers() {
+      const ahora = new Date();
+      cartas.forEach(carta => {
+        const tiempoRestante = carta.fecha - ahora;
+        const timerEl = document.getElementById("timer" + carta.id);
+        const cartaEl = document.getElementById("carta" + carta.id);
+        const boton = cartaEl.querySelector("button");
+
+        if (tiempoRestante <= 0) {
+          boton.disabled = false;
+          cartaEl.classList.remove("disabled");
+          timerEl.textContent = "¡Ya puedes abrirla!";
+          boton.onclick = () => {
+            window.location.href = carta.enlace;
+          }
+        } else {
+          const dias = Math.floor(tiempoRestante / (1000 * 60 * 60 * 24));
+          const horas = Math.floor((tiempoRestante / (1000 * 60 * 60)) % 24);
+          const minutos = Math.floor((tiempoRestante / (1000 * 60)) % 60);
+          const segundos = Math.floor((tiempoRestante / 1000) % 60);
+          timerEl.textContent = `Faltan ${dias}d ${horas}h ${minutos}m ${segundos}s`;
+          boton.disabled = true;
+          cartaEl.classList.add("disabled");
+          boton.onclick = null;
+        }
+      });
+    }
+
+    actualizarTimers();
+    setInterval(actualizarTimers, 1000);
+
+    const carta5 = document.getElementById("carta5");
+    carta5.querySelector("button").onclick = () => {
+      window.location.href = "codigo.html";
+    }
+  </script>
+
+</body>
+</html>

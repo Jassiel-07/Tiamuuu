@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ingresar Código 💜</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #d9b3ff, #a366ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #4b007f;
+      padding: 20px;
+      margin: 0;
+    }
+    h1 {
+      margin-bottom: 25px;
+      font-size: 2.5rem;
+      text-shadow: 0 0 8px #8c2aff;
+      user-select: none;
+    }
+    input {
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 2px solid #8000ff;
+      font-size: 1.3rem;
+      width: 280px;
+      margin-bottom: 20px;
+      outline: none;
+      box-shadow: 0 0 10px #b399ff;
+      text-align: center;
+    }
+    button {
+      background: #9b59b6;
+      border: none;
+      padding: 14px 36px;
+      border-radius: 18px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.3rem;
+      box-shadow: 0 0 12px #7d3c98;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    button:hover {
+      background: #7d3c98;
+    }
+    .error {
+      color: #ff3366;
+      font-weight: 700;
+      margin-top: 12px;
+      font-size: 1.1rem;
+      user-select: none;
+      min-height: 1.3em;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Ingresa el código 💜</h1>
+
+  <input type="text" id="codigo" placeholder="Ingresalo princess" maxlength="10" autofocus autocomplete="off" />
+  <button id="btnVerificar">Ver carta</button>
+  <div class="error" id="errorMsg"></div>
+
+  <script>
+    const boton = document.getElementById("btnVerificar");
+    const input = document.getElementById("codigo");
+    const errorMsg = document.getElementById("errorMsg");
+
+    boton.onclick = () => {
+      const codigo = input.value.trim();
+      if (codigo === "03/04/2025") {
+        window.location.href = "carta_secreta.html";
+      } else {
+        errorMsg.textContent = "Código incorrecto 💔 Intenta otra vez.";
+      }
+    };
+
+    input.addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        boton.click();
+      }
+    });
+  </script>
+
+</body>
+</html>
