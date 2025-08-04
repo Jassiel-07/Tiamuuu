@@ -9,21 +9,16 @@
 
     body {
       margin: 0;
+      padding: 2rem 1rem;
       background: linear-gradient(135deg, #fceff9 0%, #e6d5f7 100%);
       font-family: 'Georgia', serif;
-      display: flex;
-      justify-content: center;
-      padding: 2rem 1rem;
-      min-height: 100vh;
-      align-items: flex-start;
       color: #5b4c6b;
-      overflow-x: hidden; /* solo ocultamos horizontal, permitimos vertical scroll */
+      overflow-x: hidden; /* solo ocultamos horizontal */
     }
 
     .card-container {
-      width: 100%;
       max-width: 400px;
-      min-height: 100vh;
+      margin: 0 auto;
     }
 
     .subcard-melancolica {
@@ -37,7 +32,7 @@
       font-size: 1.1rem;
       position: relative;
       animation: fadeInUp 1.2s ease forwards;
-      margin-bottom: 4rem; /* espacio para evitar que se corte al final */
+      margin-bottom: 4rem;
     }
 
     .subcard-melancolica h3 {
@@ -91,36 +86,36 @@
 </head>
 <body>
 
-<div class="card-container">
-  <div class="subcard-melancolica" role="region" aria-label="Texto emocional ¿Qué hubiera pasado si no te conocía?">
-    <h3>🌸 ¿Qué hubiera pasado si no te conocía?</h3>
-    <p>
-      Mira la neta si no te hubiera conocido varias cosas hubieran transcurrido de manera distinta,<br />
-      yo que iba a pensar que iba a conocer a una persona la cual sería demasiado importante para mí<br />
-      en el último mes que estaría en Reynosa.<br /><br />
-      ¿Quién iba a pensar que me iba a sentir mal si esa persona no me hablaba?<br />
-      Que iba a tener tanto apego, y que le iba a pedir perdón por cualquier cosa.<br />
-      Parece mame, pero pedir perdón, mínimo en mí, no era para nada habitual.<br /><br />
-      Has cambiado mi vida desde la distancia, desde mi manera de escribir hasta mi ciclo de sueño. Jskajskajs<br />
-      Las mejores desveladas de mi vida. Cuando pienses que te digo que te amo o que te quiero nomás porque sí,<br />
-      recuerda que yo no soy una persona que se lo dice a cualquiera.<br /><br />
-      Gracias por estar ahí. Te kiero 🥺💗💗
-    </p>
+  <div class="card-container">
+    <div class="subcard-melancolica" role="region" aria-label="Texto emocional ¿Qué hubiera pasado si no te conocía?">
+      <h3>🌸 ¿Qué hubiera pasado si no te conocía?</h3>
+      <p>
+        Mira la neta si no te hubiera conocido varias cosas hubieran transcurrido de manera distinta,<br />
+        yo que iba a pensar que iba a conocer a una persona la cual sería demasiado importante para mí<br />
+        en el último mes que estaría en Reynosa.<br /><br />
+        ¿Quién iba a pensar que me iba a sentir mal si esa persona no me hablaba?<br />
+        Que iba a tener tanto apego, y que le iba a pedir perdón por cualquier cosa.<br />
+        Parece mame, pero pedir perdón, mínimo en mí, no era para nada habitual.<br /><br />
+        Has cambiado mi vida desde la distancia, desde mi manera de escribir hasta mi ciclo de sueño. Jskajskajs<br />
+        Las mejores desveladas de mi vida. Cuando pienses que te digo que te amo o que te quiero nomás porque sí,<br />
+        recuerda que yo no soy una persona que se lo dice a cualquiera.<br /><br />
+        Gracias por estar ahí. Te kiero 🥺💗💗
+      </p>
+    </div>
   </div>
-</div>
 
-<script>
-  // Generar flores cayendo
-  const total = 20;
-  for (let i = 0; i < total; i++) {
-    const flower = document.createElement('div');
-    flower.classList.add('flower');
-    flower.style.left = Math.random() * 100 + 'vw';
-    flower.style.animationDuration = 5 + Math.random() * 5 + 's';
-    flower.style.animationDelay = Math.random() * 5 + 's';
-    document.body.appendChild(flower);
-  }
-</script>
+  <script>
+    // Generar flores cayendo
+    const total = 20;
+    for (let i = 0; i < total; i++) {
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = 5 + Math.random() * 5 + 's';
+      flower.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(flower);
+    }
+  </script>
 
 </body>
 </html>
