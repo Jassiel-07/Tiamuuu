@@ -102,12 +102,12 @@
     <div class="timer" id="timer2"></div>
   </div>
   
-  <div class="carta" id="carta2">
+  <div class="carta" id="carta6">
     <div class="candado">🔒</div>
     <h3>Mi cumpleaños 14</h3>
     <p>Se abrirá el 28 de septiembre</p>
     <button disabled>Ver carta</button>
-    <div class="timer" id="timer5"></div>
+    <div class="timer" id="timer6"></div>
   </div>
 
   <div class="carta" id="carta3">
@@ -127,10 +127,10 @@
   </div>
 
   <div class="carta" id="carta5">
-    <div class="candado">🔒</div>
+    <div class="candado">🔓</div>
     <h3>Si algún día me dejas de hablar<br><small>(Ojalá nunca)</small></h3>
     <p>Protegida con código</p>
-    <button>Ingresar código</button>
+    <button onclick="window.location.href='codigo.html'">Ingresar código</button>
   </div>
 
   <script>
@@ -139,7 +139,7 @@
       { id: "2", fecha: new Date("2026-04-03T07:18:00-05:00"), enlace: "carta2.html" },
       { id: "3", fecha: new Date("2027-06-27T00:00:00-05:00"), enlace: "carta3.html" },
       { id: "4", fecha: new Date("2030-01-01T00:00:00-05:00"), enlace: "carta4.html" },
-       { id: "5", fecha: new Date("2025-09-28T00:00:00-05:00"), enlace: "carta5.html" },
+      { id: "6", fecha: new Date("2025-09-28T00:00:00-05:00"), enlace: "carta5.html" }, // cumple 14
     ];
 
     function actualizarTimers() {
@@ -156,7 +156,7 @@
           timerEl.textContent = "¡Ya puedes abrirla!";
           boton.onclick = () => {
             window.location.href = carta.enlace;
-          }
+          };
         } else {
           const dias = Math.floor(tiempoRestante / (1000 * 60 * 60 * 24));
           const horas = Math.floor((tiempoRestante / (1000 * 60 * 60)) % 24);
@@ -172,11 +172,6 @@
 
     actualizarTimers();
     setInterval(actualizarTimers, 1000);
-
-    const carta5 = document.getElementById("carta5");
-    carta5.querySelector("button").onclick = () => {
-      window.location.href = "codigo.html";
-    }
   </script>
 
 </body>
