@@ -15,14 +15,15 @@
       justify-content: center;
       padding: 2rem 1rem;
       min-height: 100vh;
-      align-items: center;
+      align-items: flex-start;
       color: #5b4c6b;
-      overflow: hidden;
+      overflow-x: hidden; /* solo ocultamos horizontal, permitimos vertical scroll */
     }
 
     .card-container {
-      width: 360px;
-      max-width: 100%;
+      width: 100%;
+      max-width: 400px;
+      min-height: 100vh;
     }
 
     .subcard-melancolica {
@@ -35,8 +36,8 @@
       line-height: 1.7;
       font-size: 1.1rem;
       position: relative;
-      overflow: hidden;
       animation: fadeInUp 1.2s ease forwards;
+      margin-bottom: 4rem; /* espacio para evitar que se corte al final */
     }
 
     .subcard-melancolica h3 {
@@ -62,13 +63,15 @@
 
     /* Flores cayendo */
     .flower {
-      position: absolute;
+      position: fixed;
       width: 20px;
       height: 20px;
       background-image: url('https://emoji.slack-edge.com/T02F34B3W/flower/8fd2fcae27f8e1d6.png');
       background-size: cover;
       animation: fall linear infinite;
       opacity: 0.8;
+      pointer-events: none;
+      z-index: 1;
     }
 
     @keyframes fall {
