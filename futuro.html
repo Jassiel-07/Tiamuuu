@@ -4,25 +4,34 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Nuestro Futuro con Subcartas</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@1,400&family=Pacifico&display=swap" rel="stylesheet" />
+
 <style>
+  /* Fondo morado claro degradado */
   body {
     margin: 0;
-    background: linear-gradient(135deg, #f9f2ff 0%, #e0d6ff 100%);
+    min-height: 100vh;
+    background: linear-gradient(135deg, #d8c6f0 0%, #e7dafc 100%);
     font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
     padding: 2rem 1rem;
+    position: relative;
+    overflow-x: hidden;
   }
   .card-container {
     width: 360px;
     max-width: 100%;
+    position: relative;
+    z-index: 10; /* para estar arriba de las flores */
   }
   .card {
-    background: white;
+    background: rgba(255 255 255 / 0.9);
     border-radius: 24px;
     box-shadow: 0 14px 30px rgba(101, 56, 255, 0.25);
     overflow: hidden;
-    transition: all 0.4s ease;
     padding: 1.8rem 2rem;
   }
   .card h2 {
@@ -32,7 +41,27 @@
     user-select: none;
     font-size: 1.8rem;
   }
-  /* Señalamiento arriba */
+  /* Texto principal, cursiva plastilina */
+  .custom-intro-text {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.3rem;
+    color: #5a3dbd;
+    text-align: center;
+    margin-bottom: 0.4rem;
+    user-select: none;
+  }
+  /* Últimos textos menos cursivos, más legibles */
+  .final-intro-text,
+  .final-text {
+    font-family: 'Montserrat Alternates', cursive;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: #7c61ff;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    user-select: none;
+  }
   .info-text {
     text-align: center;
     color: #6e4bd8;
@@ -42,7 +71,6 @@
     user-select: none;
     font-style: italic;
   }
-
   /* Subcards */
   .subcard {
     background: #f3eaff;
@@ -70,6 +98,10 @@
     color: #3a2765;
     font-size: 1rem;
     line-height: 1.4;
+    display: none;
+  }
+  .subcard.expanded p {
+    display: block;
   }
   /* Flecha para indicar expandible */
   .subcard::after {
@@ -86,54 +118,67 @@
     transform: translateY(-50%) rotate(90deg);
   }
 
-  /* Texto final */
-  .final-text {
-    margin-top: 1.5rem;
-    text-align: center;
-    font-size: 1rem;
-    color: #6e4bd8;
-    font-style: italic;
-    user-select: none;
-  }
-
   @media (max-width: 400px) {
     .card-container {
       width: 100%;
+    }
+  }
+
+
+  @keyframes fall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(110vh) rotate(360deg);
+      opacity: 0;
     }
   }
 </style>
 </head>
 <body>
 
-  <div class="card-container">
-    <div class="card">
+  <div class="card-container" role="main">
+    <div class="card" aria-label="Nuestro futuro">
       <h2>💌 Nuestro Futuro</h2>
 
-      <div class="info-text">Toca una sección para leer más</div>
+      <div class="custom-intro-text" aria-live="polite">
+        Mira princess muchas cosas pueden pasar, como se dice el futuro es incierto, pero lo que sí sé es que quiero que en ese futuro estés presente, tal vez no pase pero créeme que quiero que estés cerca de mí el mayor tiempo que sea posible.
+      </div>
 
-      <div class="subcard" tabindex="0" role="button" aria-expanded="false" aria-label="Expandir Ser Roomies" onclick="toggleSubcard(this)" onkeydown="if(event.key==='Enter'){toggleSubcard(this)}">
-        <h3>🏠 Ser Roomies </h3>
-        <p style="display:none;">
-          Que te puedo decir, un dia lo mencionamos y asta hoy lo pienso, espero algun dia cumplirlo
+      <div class="final-intro-text">
+        Pero estas son algunas ideas a futuro...
+      </div>
+
+      <div class="info-text" aria-label="Instrucción para expandir">
+        Toca una sección para leer más
+      </div>
+
+      <div class="subcard" tabindex="0" role="button" aria-expanded="false" aria-label="Expandir Vivir en el campo" onclick="toggleSubcard(this)" onkeydown="if(event.key==='Enter'){toggleSubcard(this)}">
+        <h3>🌆Vivir en reynoyork</h3>
+        <p>
+          Desde que se dijo esto no a sonado tan raro o asi pero realmente es dificil que se cumpla, pero sin duda seria algo que seria perfecto
         </p>
       </div>
 
-      <div class="subcard" tabindex="0" role="button" aria-expanded="false" aria-label="Expandir Viajarrrr" onclick="toggleSubcard(this)" onkeydown="if(event.key==='Enter'){toggleSubcard(this)}">
-        <h3>✈️ Viajarrrr</h3>
-        <p style="display:none;">
-          jskajska Que te puedo decir desde el ir de gonzo a reynoyork o conocer otros lugares
+      <div class="subcard" tabindex="0" role="button" aria-expanded="false" aria-label="Expandir Aprender juntos" onclick="toggleSubcard(this)" onkeydown="if(event.key==='Enter'){toggleSubcard(this)}">
+        <h3>🪡Un tatuaje </h3>
+        <p>
+         Aun que piences que era mame pos siempre e tenido la idea de los tatuajes, si no se da algo de duo o algo asi, minimo minimo me tengo que poner el monito de cherry crush, litt soy shoo
         </p>
       </div>
 
-      <div class="subcard" tabindex="0" role="button" aria-expanded="false" aria-label="Expandir En muchos años" onclick="toggleSubcard(this)" onkeydown="if(event.key==='Enter'){toggleSubcard(this)}">
-        <h3>En muchos años </h3>
-        <p style="display:none;">
-          Simplemente en muchos años estar sentados recordando todo lo que pasamos para llegar a ese punto
+      <div class="subcard" tabindex="0" role="button" aria-expanded="false" aria-label="Expandir Viajes inolvidables" onclick="toggleSubcard(this)" onkeydown="if(event.key==='Enter'){toggleSubcard(this)}">
+        <h3>🥺Que vivas</h3>
+        <p>
+          Y obviamente Lo mas importante que vivas en el futuro, no quiero que solo seas un hermoso recuerdo
         </p>
       </div>
 
-      <div class="final-text">
-        Pero asi como se puede cumplir todo esto y mas, puede que solo quede el recuerdo de esto, pero de corazon espero que se cumpla todo
+      <div class="final-text" aria-label="Mensaje final">
+        Muchas cosas fuera pero me da cosita ponerlas pero en fin,
+        espero que se puedan cumplir mushas cosas al futuro
       </div>
     </div>
   </div>
@@ -141,14 +186,23 @@
 <script>
   function toggleSubcard(element) {
     const isExpanded = element.classList.toggle('expanded');
-    const p = element.querySelector('p');
-    if(isExpanded) {
-      p.style.display = 'block';
-      element.setAttribute('aria-expanded', 'true');
-    } else {
-      p.style.display = 'none';
-      element.setAttribute('aria-expanded', 'false');
-    }
+    element.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+  }
+
+  // Crear flores cayendo
+  const flowerCount = 20;
+
+  function random(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  for(let i = 0; i < flowerCount; i++) {
+    const flower = document.createElement('div');
+    flower.classList.add('flower');
+    flower.style.left = `${random(0, 100)}vw`;
+    flower.style.animationDuration = `${random(8, 16)}s`;
+    flower.style.animationDelay = `${random(0, 16)}s`;
+    document.body.appendChild(flower);
   }
 </script>
 
