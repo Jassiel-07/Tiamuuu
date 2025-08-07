@@ -57,9 +57,14 @@
       width: 100%;
     }
 
+    /* 🔹 Forzamos color visible para el título y el párrafo dentro del contenedor */
+    .container h1,
+    .container p {
+      color: #ff66b2;
+    }
+
     h1 {
       font-size: 1.7em;
-      color: #ff66b2;
       margin-bottom: 15px;
     }
 
@@ -71,15 +76,15 @@
     .btn-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px; /* Más espacio entre botones */
-      margin-bottom: 25px; /* Separación con el botón final */
+      gap: 12px;
+      margin-bottom: 25px;
     }
 
     button {
       background: #ff99cc;
       border: none;
-      padding: 10px 14px; /* Un poco más grande */
-      font-size: 0.9em;   /* Un poco más grande */
+      padding: 10px 14px;
+      font-size: 0.9em;
       border-radius: 12px;
       cursor: pointer;
       transition: all 0.3s ease;
