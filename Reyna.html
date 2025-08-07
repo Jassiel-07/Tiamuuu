@@ -1,326 +1,155 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Corazón rojo interactivo contorno</title>
-<style>
-  body, html {
-    margin: 0; padding: 0; height: 100vh;
-    background: #000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    user-select: none;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #fff;
-  }
-  #instruction {
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: 1.2px;
-    margin-top: 100px;
-    margin-bottom: 10px;
-    z-index: 5;
-    position: relative;
-  }
-  #love-note {
-    position: absolute;
-    top: 40px; 
-    left: 50%;
-    transform: translateX(-50%);
-    width: 280px;
-    height: 140px;
-    background: linear-gradient(135deg, #fff0f0, #f9d7d7);
-    box-shadow: 0 8px 20px rgba(179, 18, 18, 0.6);
-    border: 2px solid #b22222;
-    border-radius: 12px;
-    padding: 20px;
-    font-size: 1.2rem;
-    color: #7a0a0a;
-    line-height: 1.4;
-    cursor: pointer;
-    user-select: none;
-    display: none;
-    transform-origin: center bottom;
-    background-image: 
-      repeating-linear-gradient(45deg, #f9d7d7 0, #f9d7d7 5px, #f4c6c6 5px, #f4c6c6 10px);
-    z-index: 10;
-  }
-  #love-note.rollup {
-    animation: rollup 1s forwards;
-  }
-  @keyframes rollup {
-    0% {
-      transform: translate(-50%, -50%) rotate(0deg) scale(1);
-      opacity: 1;
-      border-radius: 12px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Música Eres Tú 💗</title>
+  <style>
+    * {
+      box-sizing: border-box;
     }
-    100% {
-      transform: translate(-50%, -20%) rotate(720deg) scale(0);
-      opacity: 0;
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #fff0f5, #e0f7fa);
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .frase {
+      font-size: 6vw;
+      max-width: 90%;
+      margin: 40px auto 20px;
+      color: #8a004f;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+
+    .imagenes-arriba {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    .imagen-superior {
+      width: 40vw;
+      max-width: 180px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #00000033;
+    }
+
+    .boton {
+      background-color: #ff3b3b;
+      color: white;
+      border: none;
       border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 26px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s;
     }
-  }
-  #heart-container {
-    position: relative;
-    width: 300px;
-    height: 280px;
-    touch-action: none;
-    cursor: pointer;
-    margin-top: 130px; /* Bajamos el corazón 20% aprox */
-    margin-bottom: 20px;
-    z-index: 2;
-  }
-  .dot {
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    opacity: 0;
-    transform: scale(0.5);
-    pointer-events: none;
-    background: linear-gradient(135deg, #ff5f6d, #ff0000, #b20000);
-    box-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
-    filter: drop-shadow(0 0 2px rgba(255, 0, 0, 0.6));
-  }
-  .dot.show {
-    animation: appearDot 0.4s forwards;
-  }
-  @keyframes appearDot {
-    to {
-      opacity: 1;
-      transform: scale(1);
+
+    .boton:hover {
+      background-color: #d60000;
     }
-  }
-  #progress-bar {
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 250px;
-    height: 12px;
-    background: #330000;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 0 15px #ff2a2a;
-    display: none;
-  }
-  #progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #ff1a1a, #ff4d4d, #ff1a1a);
-    transition: width 0.1s linear;
-  }
-  /* Botón detonador circular rojo */
-  #detonador {
-    margin-top: 10px;
-    width: 80px;
-    height: 80px;
-    background: #b20000;
-    border-radius: 50%;
-    border: none;
-    display: none;
-    cursor: pointer;
-    color: white;
-    font-weight: 700;
-    font-size: 1rem;
-    text-align: center;
-    line-height: 80px;
-    user-select: none;
-    box-shadow: 0 0 10px #ff0000;
-    z-index: 20;
-  }
-  /* Partículas texto TE AMO (más finitos y animados) */
-  .text-dot {
-    position: absolute;
-    width: 2.5px;
-    height: 2.5px;
-    border-radius: 50%;
-    background: #ff0000;
-    opacity: 0;
-    transform: scale(0.5);
-    pointer-events: none;
-  }
-</style>
+
+    .imagen-inferior {
+      display: none;
+      width: 60vw;
+      max-width: 250px;
+      margin: 25px auto 0;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #00000033;
+    }
+
+    .emoji {
+      position: fixed;
+      top: -50px;
+      font-size: 30px;
+      animation: caer 10s linear infinite;
+      opacity: 0.9;
+      z-index: 0;
+    }
+
+    @keyframes caer {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(110vh); }
+    }
+
+    @media (min-width: 768px) {
+      .frase {
+        font-size: 30px;
+      }
+
+      .imagen-superior {
+        width: 150px;
+      }
+
+      .imagen-inferior {
+        width: 220px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div id="instruction">Deja presionado</div>
-<div id="love-note" role="dialog" aria-modal="true" aria-label="Mensaje de amor">
-  Lo unico que te quiero decir es que: aun que esto no es nada recuerda que yo te amo te quiero te aprecio, cuenta conmigo para cualquier cosa ❤️
-</div>
-<div id="heart-container" aria-label="Corazón interactivo" role="button" tabindex="0"></div>
-<div id="progress-bar"><div id="progress-fill"></div></div>
-<button id="detonador" aria-label="Detonador">Presióname</button>
+  <!-- Imágenes superiores -->
+  <div class="imagenes-arriba" id="imagenesArriba">
+    <img src="imagen1.jpg" alt="Imagen 1" class="imagen-superior" id="img1">
+    <img src="imagen2.jpg" alt="Imagen 2" class="imagen-superior" id="img2">
+  </div>
 
-<script>
-  const heartContainer = document.getElementById('heart-container');
-  const progressBar = document.getElementById('progress-bar');
-  const progressFill = document.getElementById('progress-fill');
-  const loveNote = document.getElementById('love-note');
-  const detonador = document.getElementById('detonador');
+  <!-- Frase centrada -->
+  <div class="frase">
+    Si tú fueras música yo sería yo, porque yo no puedo vivir sin música 💗🫶
+  </div>
 
-  const width = 300;
-  const height = 280;
-  const dotsCount = 200;
-  const dots = [];
+  <!-- Botón -->
+  <button class="boton" onclick="mostrarTodo()">🎵</button>
 
-  let paperShown = false;
-  let textShown = false;
+  <!-- Imagen inferior -->
+  <div>
+    <img src="imagen3.jpg" alt="Imagen 3" class="imagen-inferior" id="img3">
+  </div>
 
-  function heartXY(t) {
-    const x = 16 * Math.pow(Math.sin(t), 3);
-    const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
-    return { x, y };
-  }
+  <!-- Audio -->
+  <audio id="musica" src="musica.mp3"></audio>
 
-  function mapCoord(x, y) {
-    const scale = 10;
-    const cx = width / 2 + x * scale;
-    const cy = height / 2 - y * scale;
-    return { cx, cy };
-  }
+  <!-- Script -->
+  <script>
+    function mostrarTodo() {
+      // Mostrar imágenes
+      document.getElementById("imagenesArriba").style.display = "flex";
+      document.getElementById("img3").style.display = "block";
 
-  for (let i = 0; i < dotsCount; i++) {
-    const dot = document.createElement('div');
-    dot.classList.add('dot');
-    heartContainer.appendChild(dot);
-    dots.push(dot);
-  }
+      // Reproducir música
+      document.getElementById("musica").play();
 
-  const points = [];
-  for (let i = 0; i < dotsCount; i++) {
-    const t = (i / dotsCount) * 2 * Math.PI;
-    const { x, y } = heartXY(t);
-    const { cx, cy } = mapCoord(x, y);
-    points.push({ x: cx, y: cy });
-  }
-
-  dots.forEach((dot, i) => {
-    const p = points[i];
-    dot.style.left = `${p.x}px`;
-    dot.style.top = `${p.y}px`;
-  });
-
-  function showDots(elements, delayMultiplier=28.5) {
-    elements.forEach((dot, i) => {
-      setTimeout(() => {
-        dot.classList.add('show');
-      }, i * delayMultiplier);
-    });
-  }
-  showDots(dots);
-
-  let holdInterval;
-  let progress = 0;
-  const holdDuration = 700;
-
-  function startHold() {
-    if (paperShown) return;
-    progress = 0;
-    progressBar.style.display = 'block';
-    progressFill.style.width = '0%';
-    const startTime = performance.now();
-
-    holdInterval = setInterval(() => {
-      const now = performance.now();
-      progress = Math.min((now - startTime) / holdDuration, 1);
-      progressFill.style.width = (progress * 100) + '%';
-
-      if (progress >= 1) {
-        clearInterval(holdInterval);
-        progressBar.style.display = 'none';
-        showLoveNote();
-        paperShown = true;
-      }
-    }, 16);
-  }
-
-  function cancelHold() {
-    clearInterval(holdInterval);
-    if (!paperShown) {
-      progressBar.style.display = 'none';
-      progressFill.style.width = '0%';
-    }
-  }
-
-  function showLoveNote() {
-    loveNote.style.display = 'block';
-    detonador.style.display = 'inline-block';
-  }
-
-  function rollUpNoteAndShowText() {
-    loveNote.classList.add('rollup');
-    detonador.style.pointerEvents = 'none';
-    setTimeout(() => {
-      loveNote.style.display = 'none';
-      loveNote.classList.remove('rollup');
-      detonador.style.display = 'none';
-      createTextDots();
-    }, 1000);
-  }
-
-  function createTextDots() {
-    if(textShown) return;
-    textShown = true;
-
-    const text = "TE AMO";
-    const canvas = document.createElement('canvas');
-    canvas.width = 300;
-    canvas.height = 80;
-    const ctx = canvas.getContext('2d');
-    ctx.font = "bold 48px sans-serif";
-    ctx.fillStyle = "red";
-    ctx.textBaseline = "middle";
-    ctx.textAlign = "center";
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillText(text, canvas.width / 2, canvas.height / 2);
-
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const textDots = [];
-
-    for (let y = 0; y < canvas.height; y += 3) { 
-      for (let x = 0; x < canvas.width; x += 3) {
-        const i = (y * canvas.width + x) * 4;
-        if (imageData.data[i + 3] > 128) {
-          const dot = document.createElement('div');
-          dot.className = 'text-dot';
-          dot.style.left = (x + (width/2 - canvas.width/2)) + 'px';
-          dot.style.top = (y + (height/2 - canvas.height/2)) + 'px';
-          dot.style.opacity = 0;
-          dot.style.transform = 'scale(0.5)';
-          heartContainer.appendChild(dot);
-          textDots.push({ dot, x });
+      // Iniciar lluvia de emojis (5 de cada uno)
+      const emojis = ["💗", "🫶", "🌷", "🌹", "🌻"];
+      for (let i = 0; i < emojis.length; i++) {
+        for (let j = 0; j < 5; j++) {
+          crearEmoji(emojis[i]);
         }
       }
     }
 
-    // Ordenamos por posición x para animar de izquierda a derecha
-    textDots.sort((a, b) => a.x - b.x);
-
-    // Animar puntos con delay para durar aprox 5.7 segundos
-    const totalDuration = 5700; // ms
-    const delayBetweenDots = totalDuration / textDots.length;
-
-    textDots.forEach(({dot}, i) => {
-      setTimeout(() => {
-        dot.style.opacity = '1';
-        dot.style.transform = 'scale(1)';
-      }, i * delayBetweenDots);
-    });
-  }
-
-  detonador.addEventListener('click', rollUpNoteAndShowText);
-
-  ['pointerdown', 'mousedown', 'touchstart'].forEach(evt => {
-    heartContainer.addEventListener(evt, startHold);
-  });
-
-  ['pointerup', 'mouseup', 'touchend', 'touchcancel', 'pointerleave', 'mouseleave'].forEach(evt => {
-    heartContainer.addEventListener(evt, cancelHold);
-  });
-</script>
+    function crearEmoji(simbolo) {
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+      emoji.textContent = simbolo;
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.animationDuration = (8 + Math.random() * 5) + "s";
+      document.body.appendChild(emoji);
+      setTimeout(() => emoji.remove(), 15000);
+    }
+  </script>
 
 </body>
 </html>
