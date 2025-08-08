@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>💖 Carta para Ti</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>💜 Carta para Ti</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 
     * {
       margin: 0;
@@ -14,132 +14,123 @@
     }
 
     body {
-      background: linear-gradient(to bottom, #ffe6f0, #cce7ff);
-      overflow: hidden;
-      font-family: 'Great Vibes', cursive;
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: linear-gradient(180deg, #6b48c9 0%, #d9b2e6 50%, #ffc1d9 100%);
+      font-family: 'Satisfy', cursive;
+      color: #3a1f6b;
+      padding: 40px 20px;
+      line-height: 1.6;
+      font-size: clamp(1.6rem, 2.5vw, 2.3rem);
+      text-align: justify;
+      overflow-x: hidden;
       position: relative;
-      padding: 20px;
     }
 
-    .carta {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.2);
-      max-width: 600px;
-      width: 100%;
+    h1 {
+      font-size: clamp(3rem, 5vw, 4rem);
       text-align: center;
-      animation: aparecer 2s ease forwards;
-      opacity: 0;
-      transform: translateY(30px);
+      color: #6b48c9;
+      margin-bottom: 25px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 3px #b8a7ffaa;
+      z-index: 10;
+      position: relative;
     }
 
-    @keyframes aparecer {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .carta h1 {
-      color: #ff4d88;
-      font-size: 2.2em;
-      margin-bottom: 20px;
-    }
-
-    .carta p {
-      font-size: 1.4em;
-      color: #333;
+    p {
+      margin-bottom: 1.5em;
       white-space: pre-wrap;
-      line-height: 1.4;
+      z-index: 10;
+      position: relative;
     }
 
     .firma {
-      margin-top: 30px;
-      font-size: 1.2em;
-      color: #555;
+      margin-top: 35px;
+      text-align: center;
+      font-weight: 700;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: #4b2a8a;
+      font-style: normal;
+      letter-spacing: 0.05em;
+      z-index: 10;
+      position: relative;
     }
 
-    .corazon {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: url('img/corazon.png') no-repeat center;
-      background-size: contain;
-      animation: flotar 8s linear infinite;
-      opacity: 0.6;
+    .falling-emojis {
       pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: visible;
+      z-index: 1;
     }
 
-    @keyframes flotar {
+    .emoji {
+      position: absolute;
+      font-size: 2.5rem;
+      user-select: none;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      will-change: transform, opacity;
+    }
+
+    @keyframes fall {
       0% {
-        transform: translateY(100vh) scale(0.5);
-        opacity: 0.2;
+        transform: translateY(-10%);
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
       }
       100% {
-        transform: translateY(-10vh) scale(1.2);
-        opacity: 0.8;
-      }
-    }
-
-    audio {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      z-index: 10;
-    }
-
-    /* 🔁 RESPONSIVE */
-    @media (max-width: 600px) {
-      .carta {
-        padding: 30px 20px;
-      }
-
-      .carta h1 {
-        font-size: 1.8em;
-      }
-
-      .carta p {
-        font-size: 1.2em;
-      }
-
-      .firma {
-        font-size: 1.1em;
+        transform: translateY(110vh);
+        opacity: 0;
       }
     }
   </style>
 </head>
-  <div class="carta">
-    <h1>Para la princesa  💖</h1>
-    <p>
-      Princesa...
-      
-      Aun que siempre me e encargado de recordartelo, jamas es suficiente, desde que te conoci muchas cosas cambiaron bastante, alteraste demaciado mi vida de forma positiva,me has ayudado, has estado ahi para mi apara apoyarme, Y eso lo valoro demaciado no te imaginas lo importante que eres para mi ya que ni yo lo puedo dimencionsr, y alomejor te preguntas en que si muy pocas veces te e contado problemas... En todo tu simple forma de ser tu compañia que rompe el silencio me ayuda de manera indirecta, por eso jamas me canzare de decirte lo mucho que te aprecio, te quiero, y te amo
-    </p>
-    <div class="firma">Con todo mi cariño, tu [Angelico]</div>
-  </div>
+<body>
+  <h1>Para la princesa 💜</h1>
 
-  <!-- Corazones flotando -->
+  <p>
+Hola, como estás princesa, que te puedo decir que no te allá dicho ya, por eso aveces no soy tan cariñoso por qué siento que siempre te digo lo mismo pero ay total x.<br><br>
+Cómo siempre te quiero dar las gracias por estar ahí, por soportarme y por qué no me allas mandado a la vrg ya, gracias por apoyarme y por estar ahí para mí, por eso te lo dije te lo digo y te lo voy a decir todo el tiempo que pueda.<br><br>
+Te amo te aprecio mucho te adoro es que literal ya parece dependencia todo el día pensando en usted si mandarte mensaje o no que estarás haciendo estarás ocupada estarás dormida, literal como ya hemos ablado si me a pegado bastante el flujo de mensajes que tenemos actualmente literal pasamos de 3,000 mensajes diarios a menos de 400, y solo en la noche, yo ya sabía pero pues no estaba preparado para tal cambio estaba demaciado acostumbrado a pasar todo el día ablando wpp o llmd pero pues todo cambia, pero quiero que sepas que no importa que tanto ablemos, tu eres tu, eres lo mismo para mí, te sigo queriendo igual, eres alguien incomparable, no quisiera distanciarme de ti jamás, por qué la verdad eso sí me pagaría demaciado, perdóname si algún día te Ise sentir mal si hice alguna mamada ten por seguro que no fue apropocito ya que si supiera que para ti eso estaba mal jamás lo hubiera hecho, que sepas que te quiero demaciadooo y aprecio mucho tu llegada repentina a mi vida, espero algún día se pueda hacer ese reencuentro.<br><br>
+Recuerda que eres una gran persona, una persona muy valiosa, no te sientas mal por una persona que no te valora, Cuídate mucho mi princesa, come bien toma agua y sobre todo intenta quitar ese avito de sobrepensar las cosas, no quiero que eso te lleve a recaer otra ves, no se que haria sin ti. te quiero mucho recuerda que siempre estaré para ti Te amo💗🌷😽
+  </p>
+
+  <div class="firma">Te ama tu angelico</div>
+
+  <div class="falling-emojis" aria-hidden="true"></div>
+
   <script>
-    for (let i = 0; i < 25; i++) {
-      const corazon = document.createElement("div");
-      corazon.classList.add("corazon");
-      corazon.style.left = `${Math.random() * 100}%`;
-      corazon.style.animationDelay = `${Math.random() * 10}s`;
-      corazon.style.width = `${15 + Math.random() * 20}px`;
-      corazon.style.height = corazon.style.width;
-      document.body.appendChild(corazon);
+    const emojis = ['💗', '🌷', '🫶'];
+    const container = document.querySelector('.falling-emojis');
+
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
     }
+
+    function createEmoji() {
+      const emoji = document.createElement('div');
+      emoji.classList.add('emoji');
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = `${random(0, 100)}vw`;
+      emoji.style.fontSize = `${random(25, 45)}px`;
+      emoji.style.animationDuration = `${random(30, 60)}s`;
+      emoji.style.opacity = random(0.5, 1);
+      container.appendChild(emoji);
+
+      setTimeout(() => {
+        emoji.remove();
+      }, 60000);
+    }
+
+    setInterval(createEmoji, 600);
   </script>
-
-  <!-- Música de fondo -->
-  <audio autoplay loop>
-    <source src="audio/musica-romantica.mp3" type="audio/mpeg">
-  </audio>
-
 </body>
 </html>
