@@ -72,24 +72,8 @@
       position: absolute;
       font-size: 2.5rem;
       user-select: none;
-      animation-name: fall;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
       will-change: transform, opacity;
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translateY(-10%);
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(110vh);
-        opacity: 0;
-      }
+      opacity: 0.8;
     }
   </style>
 </head>
@@ -119,15 +103,79 @@ Recuerda que eres una gran persona, una persona muy valiosa, no te sientas mal p
       const emoji = document.createElement('div');
       emoji.classList.add('emoji');
       emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      emoji.style.left = `${random(0, 100)}vw`;
       emoji.style.fontSize = `${random(25, 45)}px`;
-      emoji.style.animationDuration = `${random(30, 60)}s`;
       emoji.style.opacity = random(0.5, 1);
+
+      // Elegir lado de entrada: arriba, abajo, izquierda, derecha
+      const side = ['top', 'bottom', 'left', 'right'][Math.floor(Math.random() * 4)];
+
+      switch (side) {
+        case 'top':
+          emoji.style.top = '-5%';
+          emoji.style.left = `${random(0, 100)}vw`;
+          animateEmoji(emoji, 'down');
+          break;
+        case 'bottom':
+          emoji.style.bottom = '-5%';
+          emoji.style.left = `${random(0, 100)}vw`;
+          animateEmoji(emoji, 'up');
+          break;
+        case 'left':
+          emoji.style.left = '-5%';
+          emoji.style.top = `${random(0, 100)}vh`;
+          animateEmoji(emoji, 'right');
+          break;
+        case 'right':
+          emoji.style.right = '-5%';
+          emoji.style.top = `${random(0, 100)}vh`;
+          animateEmoji(emoji, 'left');
+          break;
+      }
+
       container.appendChild(emoji);
 
+      // Limpiar después de 60s
       setTimeout(() => {
         emoji.remove();
       }, 60000);
+    }
+
+    function animateEmoji(emoji, direction) {
+      const duration = random(30, 60); // segundos
+      let keyframes;
+
+      switch (direction) {
+        case 'down':
+          keyframes = [
+            { transform: 'translateY(0)', opacity: 1 },
+            { transform: 'translateY(110vh)', opacity: 0 }
+          ];
+          break;
+        case 'up':
+          keyframes = [
+            { transform: 'translateY(0)', opacity: 1 },
+            { transform: 'translateY(-110vh)', opacity: 0 }
+          ];
+          break;
+        case 'right':
+          keyframes = [
+            { transform: 'translateX(0)', opacity: 1 },
+            { transform: 'translateX(110vw)', opacity: 0 }
+          ];
+          break;
+        case 'left':
+          keyframes = [
+            { transform: 'translateX(0)', opacity: 1 },
+            { transform: 'translateX(-110vw)', opacity: 0 }
+          ];
+          break;
+      }
+
+      emoji.animate(keyframes, {
+        duration: duration * 1000,
+        iterations: Infinity,
+        easing: 'linear'
+      });
     }
 
     setInterval(createEmoji, 600);
