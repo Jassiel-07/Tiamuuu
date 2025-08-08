@@ -5,66 +5,149 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cosas que solo tú sabes</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Pacifico&display=swap');
+
     body {
-      font-family: "Segoe UI", sans-serif;
-      background-image: url('fon.jpg');
+      font-family: 'Poppins', sans-serif;
+      background-image: linear-gradient(135deg, #a88de6, #d3a3ff);
+      background-attachment: fixed;
       background-size: cover;
       background-position: center;
-      background-attachment: fixed;
       margin: 0;
-      padding: 20px;
-      color: #333;
+      padding: 30px 20px;
+      color: #3b1d5d;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #fff;
+      font-size: 3rem;
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px #d3a3ffaa;
+      user-select: none;
     }
 
     .box {
-      background-color: #ffcce7cc;
-      border-radius: 15px;
+      background: rgba(255 255 255 / 0.2);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
       margin-bottom: 20px;
-      padding: 15px;
+      padding: 20px 25px;
+      width: 100%;
+      max-width: 600px;
+      box-shadow:
+        0 8px 20px rgb(165 125 252 / 0.35),
+        inset 0 0 15px rgb(255 255 255 / 0.2);
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      backdrop-filter: blur(5px);
+      transition: all 0.4s ease;
+      user-select: none;
+      color: #faf7ff;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      position: relative;
+      overflow: hidden;
     }
 
     .box:hover {
-      background-color: #ffb8decc;
+      background: rgba(255 255 255 / 0.3);
+      box-shadow:
+        0 12px 30px rgb(180 140 255 / 0.5),
+        inset 0 0 25px rgb(255 255 255 / 0.3);
+      transform: translateY(-5px);
+      color: #f8e1ff;
+    }
+
+    .box::before {
+      content: '💜';
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.8rem;
+      opacity: 0.15;
+      pointer-events: none;
+      user-select: none;
+      filter: drop-shadow(0 0 3px #d3a3ffaa);
+      transition: opacity 0.4s ease;
+    }
+
+    .box:hover::before {
+      opacity: 0.4;
     }
 
     .content {
-      background-color: #f4d3ff;
-      margin-top: 10px;
-      border-radius: 10px;
-      padding: 10px;
+      margin-top: 12px;
+      border-radius: 15px;
+      padding: 12px 15px;
+      background: rgba(255 255 255 / 0.35);
+      color: #4a2970;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.5;
+      box-shadow: inset 0 0 8px rgb(160 105 230 / 0.35);
       display: none;
-      animation: fadeIn 0.4s ease;
+      animation: fadeIn 0.35s ease forwards;
+      white-space: pre-line;
+      user-select: text;
     }
 
     .inner-title {
-      font-weight: bold;
+      font-weight: 600;
+      font-size: 1.1rem;
       margin-top: 10px;
-      background-color: #e68fff;
-      padding: 8px 12px;
-      border-radius: 10px;
-      color: #fff;
-      box-shadow: inset 0 0 5px #fff3;
+      margin-bottom: 6px;
+      background-color: #cfa4ffcc;
+      padding: 7px 12px;
+      border-radius: 12px;
+      color: #371d6e;
+      box-shadow: inset 0 0 6px #d9b3ffcc;
+      user-select: text;
     }
 
     .inner-text {
-      background-color: #f8e0ff;
+      background-color: #e6d4ffcc;
       margin-top: 5px;
-      padding: 10px;
-      border-radius: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
       white-space: pre-line;
+      user-select: text;
+      box-shadow: inset 0 0 8px #caaeffcc;
+      color: #4b308a;
+      font-weight: 400;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      body {
+        padding: 20px 12px;
+      }
+
+      h1 {
+        font-size: 2.4rem;
+        margin-bottom: 30px;
+      }
+
+      .box {
+        font-size: 0.9rem;
+      }
+
+      .inner-title {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
+
+  <h1>Cosas que solo tú sabes</h1>
 
   <div class="box" onclick="toggleBox('c1')">
     <strong>Mi lado cariñoso😽</strong>
@@ -109,13 +192,6 @@
     </div>
   </div>
 
-  <div class="box" onclick="toggleBox('c6')">
-    <strong>Que amo los femboys🤔</strong>
-    <div class="content" id="c6">
-      Noooooo obeamente nooooo namas t amo a ti dieeeeeeee no pos yo q quiero q se te olvide y todavía te doy cuerda😂
-    </div>
-  </div>
-
   <div class="box" onclick="toggleBox('c7')">
     <strong>Cosas que hemos platicado🥰</strong>
     <div class="content" id="c7">
@@ -137,12 +213,37 @@
     </div>
   </div>
 
+  <div class="box" onclick="toggleBox('c8')">
+    <strong>Nuestras historias📖</strong>
+    <div class="content" id="c8">
+      Todas esas historias que ufff como olvidarlas, desde como andabamos de las greñas, hasta como termine con las uñas pintadas
+    </div>
+  </div>
+
+  <div class="box" onclick="toggleBox('c9')">
+    <strong>La fvcking vibra🙂‍↔️</strong>
+    <div class="content" id="c9">
+      Obeo, esa conexión tan especial que tenemos entre nosotros desde algo tan simple como la forma de ablar 
+    </div>
+  </div>
+
+  <div class="box" onclick="toggleBox('c10')">
+    <strong>Nuestras expresiones🔥</strong>
+    <div class="content" id="c10">
+      Realmente nos pasa lo mismo, ablo con otra perdona y le digo conmadre y me dice, "Conamdre que" como q si yo fuera el raro, ctm como no esta mi rabanitto aqui pa que te enseñe a ablar alv
+    </div>
+  </div>
+
   <script>
     function toggleBox(id) {
       const box = document.getElementById(id);
-      box.style.display = box.style.display === 'block' ? 'none' : 'block';
+      if(box.style.display === 'block') {
+        box.style.display = 'none';
+      } else {
+        box.style.display = 'block';
+      }
     }
   </script>
 
 </body>
-</html>
+    </html>
